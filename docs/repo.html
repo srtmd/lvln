@@ -1,92 +1,506 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ekmas/cs16.css@main/css/cs16.min.css">
-    <link rel="stylesheet" href="index.css" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="title" content="cs16.css" />
-    <meta name="description" content=" " />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <meta property="og:title" content="nxty.cc" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="/previe.png" />
-    <meta property="og:site_name" content="nxty.cc" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image:alt" content=" " />
-    <title>nxty.cc</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N X T Y L V L</title>
+    <!-- Importando Montserrat Medium do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        /* Garante que a página ocupe toda a altura */
+        margin: 0;
+      }
+
+      body {
+        line-height: 1.6;
+        font-family: 'Montserrat', sans-serif;
+        transition: background-color 0.3s, color 0.3s;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Modo escuro (padrão) */
+      body.dark {
+        background-color: #212121;
+        color: #ffffff;
+      }
+
+      /* Modo claro */
+      body.light {
+        background-color: #f5f5f5;
+        color: #000000;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      i {
+        position: relative;
+        font-size: 20px;
+        top: 2px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        flex: 1;
+        /* Faz o conteúdo principal ocupar o espaço disponível */
+      }
+
+      .banner {
+        width: 100%;
+        height: 260px;
+        background-image: url('https://cdn2.steamgriddb.com/hero_thumb/a5a37349a1268ccdd179047cc9bf85a0.jpg');
+        background-size: cover;
+        background-position: center;
+        border-radius: 12px;
+        margin-bottom: -50px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        position: relative;
+      }
+
+      .theme-toggle {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        /* Fundo mais escuro para contraste */
+        border: none;
+        padding: 8px 16px;
+        /* Tamanho mantido */
+        border-radius: 20px;
+        color: #ffffff;
+        /* Texto branco mantido */
+        cursor: pointer;
+        font-size: 14px;
+        /* Fonte mantida */
+        font-weight: 500;
+        transition: background-color 0.3s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        /* Sombra sutil para destaque */
+      }
+
+      .theme-toggle:hover {
+        background-color: rgba(0, 0, 0, 0.9);
+        /* Escurece no hover para feedback */
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-radius: 0 0 12px 12px;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(12px);
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      body.dark .header {
+        background-color: rgba(40, 40, 40, 0.85);
+      }
+
+      body.light .header {
+        background-color: rgba(245, 245, 245, 0.85);
+      }
+
+      .app-left {
+        display: flex;
+        align-items: center;
+      }
+
+      .app-icon {
+        width: 110px;
+        height: 110px;
+        border-radius: 20px;
+        margin-right: 20px; 
+        background-image: url('https://cdn2.steamgriddb.com/icon_thumb/3dfbf3b3c53c9a8744f6d0572b9158cf.png');
+        background-size: cover;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .app-info h1 {
+        font-size: 26px;
+        margin-bottom: 6px;
+      }
+
+      body.dark .app-info h1 {
+        color: #ffffff;
+      }
+
+      body.light .app-info h1 {
+        color: #000000;
+      }
+
+      .app-info p {
+        font-size: 14px;
+      }
+
+      body.dark .app-info p {
+        color: #d0d0d0;
+      }
+
+      body.light .app-info p {
+        color: #666666;
+      }
+
+      .install-section {
+        padding: 10px;
+      }
+
+      .install-button {
+        display: inline-block;
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        padding: 12px 36px;
+        font-size: 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.1s;
+        font-weight: 500;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .install-button:hover {
+        background-color: #0062cc;
+        transform: scale(1.02);
+      }
+
+      .details {
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(12px);
+      }
+
+      body.dark .details {
+        background-color: rgba(40, 40, 40, 0.85);
+      }
+
+      body.light .details {
+        background-color: rgba(245, 245, 245, 0.85);
+      }
+
+      .details h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      body.dark .details h2 {
+        color: #ffffff;
+      }
+
+      body.light .details h2 {
+        color: #000000;
+      }
+
+      .details p {
+        font-size: 14px;
+      }
+
+      body.dark .details p {
+        color: #d0d0d0;
+      }
+
+      body.light .details p {
+        color: #666666;
+      }
+
+      .description {
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(12px);
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      body.dark .description {
+        background-color: rgba(40, 40, 40, 0.85);
+      }
+
+      body.light .description {
+        background-color: rgba(245, 245, 245, 0.85);
+      }
+
+      .description h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      body.dark .description h2 {
+        color: #ffffff;
+      }
+
+      body.light .description h2 {
+        color: #000000;
+      }
+
+      /* Estilos do modal */
+      .modal {
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .modal.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal-content {
+        background: #333;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        color: white;
+        width: 300px;
+        position: relative;
+      }
+
+      .modal button {
+        display: block;
+        margin: 10px auto;
+        padding: 12px;
+        font-size: 16px;
+        border: 2px solid white;
+        background-color: transparent;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s, color 0.3s;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .modal button:hover {
+        background-color: white;
+        color: black;
+      }
+
+      .close-button {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+      }
+
+      .footer {
+        padding: 20px;
+        /* Igual ao .description */
+        border-radius: 12px 12px 0 0;
+        /* Bordas arredondadas no topo */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        /* Igual ao .description */
+        backdrop-filter: blur(12px);
+        /* Igual ao .description */
+        font-family: 'Montserrat', sans-serif;
+        width: 100%;
+        /* Largura total */
+      }
+
+      body.dark .footer {
+        background-color: rgba(40, 40, 40, 0.85);
+        /* Igual ao .description */
+      }
+
+      body.light .footer {
+        background-color: rgba(245, 245, 245, 0.85);
+        /* Igual ao .description */
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer p {
+        font-size: 14px;
+        /* Igual ao .description p */
+      }
+
+      body.dark .footer p {
+        color: #d0d0d0;
+        /* Igual ao .description p */
+      }
+
+      body.light .footer p {
+        color: #666666;
+        /* Igual ao .description p */
+      }
+
+      .footer-links a {
+        margin-left: 20px;
+        font-size: 14px;
+        /* Igual ao .description p */
+        color: inherit;
+        transition: color 0.3s;
+      }
+
+      body.dark .footer-links a {
+        color: #d0d0d0;
+        /* Igual ao .description p */
+      }
+
+      body.light .footer-links a {
+        color: #666666;
+        /* Igual ao .description p */
+      }
+
+      .footer-links a:hover {
+        color: #007bff;
+        /* Consistência com o botão de instalação */
+      }
+
+      @media (max-width: 768px) {
+        .banner {
+          height: 160px;
+        }
+
+        .header {
+          flex-direction: column;
+          text-align: center;
+          padding: 15px;
+        }
+
+        .app-left {
+          flex-direction: column;
+          margin-bottom: 10px;
+        }
+
+        .app-icon {
+          margin: 0 0 10px 0;
+        }
+
+        .install-button {
+          width: 100%;
+          padding: 12px 0;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-links {
+          margin-top: 10px;
+        }
+
+        .footer-links a {
+          margin: 0 10px;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <header>
-      <div class="top">
-        <h1>nxtylvl</h1>
+  <body class="dark">
+    <div class="container">
+      <div class="banner">
+        <button class="theme-toggle" onclick="toggleTheme()">Light</button>
       </div>
-      <p>R.E.P.O.</p>
-    </header>
-    <div style="margin-bottom: 10px" class="installation">
-      <style>
-        .center {
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
+      <div class="header">
+        <div class="app-left">
+          <div class="app-icon"></div>
+          <div class="app-info">
+            <h1>R.E.P.O.</h1>
+            <p>semiwork</p>
+            <p>On-line Coop, Horror, First Person</p>
+          </div>
+        </div>
+        <div class="install-section">
+          <button class="install-button" onclick="openModal()">Download</button>
+        </div>
+      </div>
+      <div class="details">
+        <h2>Game Details</h2>
+        <p>Version: v0.1.2</p>
+        <p>Updated: Feb 28, 2025</p>
+        <p>OS: Windows 10/11</p>
+      </div>
+      <div class="description">
+        <h2>About the Game</h2>
+        <p> R.E.P.O. is an online co-op horror game featuring physics, proximity voice chat and scary monsters. You and up to 5 friends can venture into terrifying environments to extract valuable objects using your physics-based grabbing tool. </p>
+      </div>
+    </div>
+    <div class="modal" id="downloadModal" onclick="closeModal(event)">
+      <span class="close-button" onclick="closeModal(event)">&times;</span>
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <button onclick="window.open('https://gofile.io/d/tYaHK8','_blank')">Mirror: GoFile</button>
+        <button onclick="window.open('https://pixeldrain.com/u/ybx2JQSS','_blank')">Mirror: PixelDrain</button>
+        <button onclick="window.open('https://drive.google.com/file/d/1Qip54sbmi0RnHCq6svTrpe0R00z_jclX/view?usp=sharing','_blank')">Mirror: Drive</button>
+        <!--button disabled onclick="window.open('magnet://','_blank')">Mirror: Torrent</button-->
+      </div>
+    </div>
+    <script>
+      function toggleTheme() {
+        const body = document.body;
+        const button = document.querySelector('.theme-toggle');
+        if (body.classList.contains('dark')) {
+          body.classList.remove('dark');
+          body.classList.add('light');
+          button.textContent = 'Dark';
+        } else {
+          body.classList.remove('light');
+          body.classList.add('dark');
+          button.textContent = 'Light';
         }
-      </style>
-      <img class="center" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3241660/header.jpg?t=1740578354">
-      <br>
-      <h2>Version</h2>
-      <p>v0.1.2 / Build 17560228</p>
-      <h2>Online</h2>
-      <p>via Steam</p>
-      <h2>Size</h2>
-      <p>340MB</p>
-      <h2>Download links</h2>
-      <br>
-      <a class="cs-btn" target="_blank" href="https://gofile.io/d/tYaHK8">DOWNLOAD: GoFile</a>
-      <br><br>
-      <a class="cs-btn" target="_blank" href="https://pixeldrain.com/u/ybx2JQSS">DOWNLOAD: PixelDrain</a>
-      <br><br>
-      <a class="cs-btn" target="_blank" href="https://drive.google.com/file/d/1Qip54sbmi0RnHCq6svTrpe0R00z_jclX/view?usp=sharing">DOWNLOAD: Google Drive</a>
-      <br><br>
-      
-      <hr class="cs-hr" />
-      <br>
-      <footer> nxtylvl. </footer>
-      <script type="text/javascript">
-        document.querySelectorAll(".toggle-vision").forEach((button) => {
-          button.addEventListener("click", function() {
-            const codeBlock = this.closest(".code-block").querySelector(".inner");
-            codeBlock.classList.toggle("hidden");
-            this.textContent = codeBlock.classList.contains("hidden") ? "Show links" : "Hide links";
-          });
-        });
-        document.querySelectorAll(".inner .cs-btn").forEach((button) => {
-          let timeout = null;
-          button.addEventListener("click", function() {
-            const codeElement = this.closest(".inner").querySelector("code");
-            const codeToCopy = codeElement.textContent;
-            navigator.clipboard.writeText(codeToCopy).then(() => {
-              this.textContent = "Copied!";
-              if (timeout !== null) {
-                clearTimeout(timeout);
-              }
-              timeout = setTimeout(() => {
-                this.textContent = "Copy";
-              }, 2000);
-            }).catch((err) => {
-              console.error("Failed to copy code: ", err);
-            });
-          });
-        });
-      </script>
-      <audio id="hlfx" src="hlfx.mp3"></audio>
-      <script type="text/javascript">
-        function play() {
-          var audio = document.getElementById("hlfx");
-          audio.volume = 0.8;
-          audio.play();
+      }
+
+      function openModal() {
+        document.getElementById("downloadModal").classList.add("show");
+      }
+
+      function closeModal(event) {
+        if (event.target.id === "downloadModal" || event.target.classList.contains("close-button")) {
+          document.getElementById("downloadModal").classList.remove("show");
         }
-      </script>
+      }
+    </script>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>NXTYLVL © 2025</p>
+          <div class="footer-links">
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="https://nxty.cc/lvl"><i class="bi bi-discord"></i> Discord</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
