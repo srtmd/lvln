@@ -1,154 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ekmas/cs16.css@main/css/cs16.min.css">
-    <link rel="stylesheet" href="index.css" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="title" content="cs16.css" />
-    <meta
-      name="description"
-      content=" "
-    />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-
-    <meta property="og:title" content="nxty.cc" />
-    <meta
-      property="og:description"
-      content=" "
-    />
-    <meta property="og:image" content="/previe.png" />
-    <meta property="og:site_name" content="nxty.cc" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:image:alt"
-      content=" "
-    />
-
-    <title>nxty.cc</title>
-  </head>
-  <body>
-    <header>
-      <div class="top">
-        <h1>nxty.cc</h1>
-
-        <!--div class="links">
-          <a
-            href="https://github.com/ekmas/cs16.css"
-            target="_blank"
-            class="cs-btn gh"
-          ></a>
-          <a
-            href="https://x.com/samuelbreznjak"
-            target="_blank"
-            class="cs-btn x"
-          ></a>
-        </div-->
-      </div>
-      <p> </p>
-
-    </header>
-
-    <div style="margin-bottom: 10px" class="installation">
-
-<h2 class="pointer" onclick="play()">New Game</h2>
-<h2 class="pointer" onclick="play()">Find Servers</h2>
-<h2 class="pointer" onclick="document.querySelector('.cs-dialog').showModal(); play()">Options</h2>
-<h2 class="pointer" onclick="play()">Quit</h2>
-      <section>
-  <dialog class="cs-dialog">
-    <form method="dialog">
-      <div class="heading">
-        <div class="wrapper">
-          <div class="icon"></div>
-          <p class="text">Options</p>
-        </div>
-        <button class="cs-btn close"></button>
-      </div>
-      <div class="content">
-        <div class="cs-tabs">
-  <input
-    class="radiotab"
-    name="tabs"
-    tabindex="1"
-    type="radio"
-    id="tabone"
-    checked="checked"
-  />
-  <label class="label" for="tabone">Multiplayer</label>
-  <div class="panel" tabindex="1">
-    <label>Player name</label><br>
-    <input type="text" value="nxtlvl" class="cs-input"/><br>
-    <label>Discord</label><br>
-    <a class="cs-btn">Click to Join</a>
-  </div>
-</div>
-      </div>
-      <menu class="footer-btns">
-        <button class="cs-btn">OK</button>
-        <button class="cs-btn">Cancel</button>
-        <button class="cs-btn">Apply</button>
-      </menu>
-    </form>
-  </dialog>
-</section>
-
-      <br>
-<hr class="cs-hr" />
-      <br>
-
-    <footer>
-      by
-      <a target="_blank" href="https://s2.rip">s2.rip</a>.
-    </footer>
-
-    <script type="text/javascript">
-      document.querySelectorAll(".toggle-vision").forEach((button) => {
-  button.addEventListener("click", function () {
-    const codeBlock = this.closest(".code-block").querySelector(".inner");
-    codeBlock.classList.toggle("hidden");
-    this.textContent = codeBlock.classList.contains("hidden")
-      ? "Show code"
-      : "Hide code";
-  });
-});
-
-document.querySelectorAll(".inner .cs-btn").forEach((button) => {
-  let timeout = null;
-
-  button.addEventListener("click", function () {
-    const codeElement = this.closest(".inner").querySelector("code");
-    const codeToCopy = codeElement.textContent;
-    navigator.clipboard
-      .writeText(codeToCopy)
-      .then(() => {
-        this.textContent = "Copied!";
-
-        if (timeout !== null) {
-          clearTimeout(timeout);
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N X T Y L V L</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        timeout = setTimeout(() => {
-          this.textContent = "Copy";
-        }, 2000);
-      })
-      .catch((err) => {
-        console.error("Failed to copy code: ", err);
-      });
-  });
-});
-  
-    </script>
-<audio id="hlfx" src="hlfx.mp3"></audio>
-    <script type="text/javascript">
-      function play() {
-        var audio = document.getElementById("hlfx");
-        audio.volume = 0.8;
-        audio.play();
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('bg.jpg') no-repeat center center/cover;
+            background-color: #121212;
+            color: white;
+        }
 
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            padding: 50px;
+            background: rgba(30, 30, 30, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        i.baixo {
+            position: relative;
+            font-size: 20px;
+            top: 2px;
+        }
+
+        i.normal {
+            position: relative;
+            font-size: 20px;
+            top: 0px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: 600;
+            color: black;
+            background: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #cccccc;
+        }
+
+        .footer {
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            font-family: 'Montserrat', sans-serif;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+
+        body.dark .footer {
+            background-color: rgba(40, 40, 40, 0.5);
+        }
+
+        body.light .footer {
+            background-color: rgba(245, 245, 245, 0.5);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            font-size: 14px;
+        }
+
+        body.dark .footer p {
+            color: #d0d0d0;
+        }
+
+        body.light .footer p {
+            color: #666666;
+        }
+
+        .footer-links a {
+            margin-left: 20px;
+            font-size: 14px;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        body.dark .footer-links a {
+            color: #d0d0d0;
+        }
+
+        body.light .footer-links a {
+            color: #666666;
+        }
+
+        .footer-links a:hover {
+            color: #007bff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-links {
+          margin-top: 10px;
+        }
+
+        .footer-links a {
+          margin: 0 10px;
+        }
       }
-    </script>
-  </body>
+    </style>
+</head>
+<body class="dark">
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>NXTYLVL</h1>
+        <a href="https://nxty.cc/lvl" class="btn">JOIN <i class="bi bi-arrow-right normal"></i></a>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+          <p>NXTYLVL © 2025</p>
+          <div class="footer-links">
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="https://nxty.cc/lvl"><i class="bi bi-discord baixo"></i> Discord</a>
+          </div>
+        </div>
+    </footer>
+</body>
 </html>
