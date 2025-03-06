@@ -1,60 +1,147 @@
 <!DOCTYPE html>
-<html lang="pt">
-
+<html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N X T Y L V L</title>
+    <title>D O W N L O A D</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        /* Reset de estilos */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Fundo com imagem semi-transparente */
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: black;
-            overflow: hidden;
+            background: url('bg.jpg') no-repeat center center/cover;
+            background-color: #121212;
+            color: white;
         }
 
-        /* Camada da imagem com opacidade reduzida */
-        .background {
-            position: fixed;
+        .overlay {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('bg.jpg') no-repeat center center fixed;
-            background-size: cover;
-            opacity: 0.5; /* Opacidade reduzida para 50% */
-            z-index: -1;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
         }
 
-        /* Container principal com efeito vidro (Mica escuro) */
         .container {
-            background: rgba(0, 0, 0, 0.7); /* Preto semi-transparente */
-            backdrop-filter: blur(15px);
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
-            border-radius: 12px;
-            padding: 30px;
-            width: 350px;
+            position: relative;
             text-align: center;
-            color: white;
+            padding: 50px;
+            background: rgba(30, 30, 30, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
         }
 
         h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        i.baixo {
+            position: relative;
             font-size: 20px;
-            margin-bottom: 15px;
-            font-weight: 500;
-            color: #bbb;
+            top: 2px;
+        }
+
+        i.normal {
+            position: relative;
+            font-size: 20px;
+            top: 1px;
+        }
+
+        .btn {
+            width: 100%;
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: 600;
+            color: whitesmoke;
+            background: #0078D7;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            
+            background: #005bb5;
+        }
+
+        .footer {
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            font-family: 'Montserrat', sans-serif;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+
+        body.dark .footer {
+            background-color: rgba(40, 40, 40, 0.5);
+        }
+
+        body.light .footer {
+            background-color: rgba(245, 245, 245, 0.5);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            font-size: 14px;
+        }
+
+        body.dark .footer p {
+            color: #d0d0d0;
+        }
+
+        body.light .footer p {
+            color: #666666;
+        }
+
+        .footer-links a {
+            margin-left: 20px;
+            font-size: 14px;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        body.dark .footer-links a {
+            color: #d0d0d0;
+        }
+
+        body.light .footer-links a {
+            color: #666666;
+        }
+
+        .footer-links a:hover {
+            color: #007bff;
         }
 
         /* Input estilizado */
@@ -80,24 +167,6 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Botão estilizado */
-        button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: #0078D7;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-            font-weight: 500;
-        }
-
-        button:hover {
-            background: #005bb5;
-        }
-
         /* Resultado */
         #resultado {
             margin-top: 15px;
@@ -106,25 +175,52 @@
             color: #ddd;
             min-height: 20px;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-links {
+          margin-top: 10px;
+        }
+
+        .footer-links a {
+          margin: 0 10px;
+        }
+      }
     </style>
 </head>
-<body>
-
-    <!-- Camada de fundo -->
-    <div class="background"></div>
-
-    <!-- Container principal -->
+<body class="dark">
+    <div class="overlay"></div>
     <div class="container">
         <h1 id="he"><strong>NXTYLVL</strong> 🔗 Link Encryptor</h1>
-        <input type="text" id="base64Input" placeholder="Insira a string Base64">
-        <button id="openBtn"> GO  TO  LINK </button>
+        <input type="text" id="base64Input" style="display: none" placeholder="Insira a string Base64">
+        <button class="btn" id="openBtn">GO  TO  LINK <i class="bi bi-arrow-right normal"></i></button>
+        <!--a href="https://nxty.cc/lvl" class="btn">GO  TO  LINK <i class="bi bi-arrow-right normal"></i></a-->
         <p id="resultado"></p>
     </div>
+    <footer class="footer">
+        <div class="footer-content">
+          <p>NXTYLVL © 2025</p>
+          <div class="footer-links">
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="https://nxty.cc/lvl"><i class="bi bi-discord baixo"></i> Discord</a>
+          </div>
+        </div>
+    </footer>
 
     <script>
         document.title = "D O W N L O A D";
         document.getElementById("base64Input").style.display = 'none';
-        document.getElementById("resultado").style.display = 'none';
+        //document.getElementById("resultado").style.display = 'none';
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
@@ -141,23 +237,24 @@
         function processFileParam() {
             const base64Param = getQueryParam("file");
             if (!base64Param) {
-                document.getElementById("resultado").textContent = "❌ Nenhum parâmetro 'file' encontrado!";
+                document.getElementById("resultado").textContent = "❌ Maybe you shouldn't be here.";
                 document.getElementById("openBtn").style.display = 'none';
-                document.getElementById("he").textContent = "Link not found.";
+                document.getElementById("he").textContent = "Oops!";
                 return;
             }
 
             const decodedText = decodeBase64(base64Param);
             if (!decodedText) {
-                document.getElementById("resultado").textContent = "❌ Erro ao decodificar Base64!";
+                document.getElementById("resultado").textContent = "❌ There is something missing.";
                 document.getElementById("openBtn").style.display = 'none';
-                document.getElementById("he").textContent = "Link not found.";
+                document.getElementById("he").textContent = "Uhh.";
                 return;
             }
 
             // Verifica se a string é um link válido
             if (decodedText.startsWith("http://") || decodedText.startsWith("https://")) {
-                document.getElementById("resultado").innerHTML = `🔗 Link encontrado!`;
+                //document.getElementById("resultado").innerHTML = `🔗 Link found!`;
+                document.getElementById("resultado").style.display = 'none';
                 const openButton = document.getElementById("openBtn");
                 //openButton.style.display = "block";
                 openButton.onclick = () => {
@@ -165,13 +262,14 @@
                     //window.open(decodedText, "_blank");
                 };
             } else {
-                document.getElementById("resultado").textContent = "❌ Invalid!";
+                document.getElementById("resultado").textContent = "❌ I don't think this is a valid link.";
+                document.getElementById("openBtn").style.display = 'none';
+                document.getElementById("he").textContent = "Link not found.";
             }
         }
 
         // Executa ao carregar a página
         processFileParam();
     </script>
-
 </body>
 </html>
