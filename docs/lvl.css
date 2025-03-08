@@ -1,0 +1,505 @@
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: url('https://raw.githubusercontent.com/2nxty/nx/refs/heads/main/docs/img/stock-teal.png') no-repeat center center fixed;
+        background-size: cover;
+        line-height: 1.6;
+        font-family: 'Montserrat', sans-serif;
+        transition: background-color 0.3s, color 0.3s;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      /* Camada de fundo para ajustar o contraste */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+      }
+
+      /* Modo escuro (padrão) */
+      body.dark {
+        color: #e0e0e0;
+      }
+
+      /* Modo claro */
+      body.light {
+        color: #000000;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      i {
+        position: relative;
+        font-size: 20px;
+        top: 2px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        flex: 1;
+        position: relative;
+        z-index: 2;
+      }
+
+      .banner {
+        width: 100%;
+        height: 260px;
+        background-image: url('https://placehold.co/1200x260');
+        background-size: cover;
+        background-position: center;
+        border-radius: 12px;
+        margin-bottom: -50px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+
+      .theme-toggle {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background-color 0.3s, transform 0.2s ease, color 0.3s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      body.dark .theme-toggle {
+        background: rgba(20, 40, 40, 0.7);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+      }
+
+      body.light .theme-toggle {
+        background: rgba(245, 245, 245, 0.7);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: #000000;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.05);
+      }
+
+      body.dark .theme-toggle:hover {
+        background: rgba(20, 40, 40, 0.9);
+      }
+
+      body.light .theme-toggle:hover {
+        background: rgba(245, 245, 245, 0.9);
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-radius: 12px;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(15px);
+      }
+
+      body.dark .header {
+        background: rgba(20, 40, 40, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      body.light .header {
+        background: rgba(245, 245, 245, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .app-left {
+        display: flex;
+        align-items: center;
+      }
+
+      .app-icon {
+        width: 110px;
+        height: 110px;
+        border-radius: 20px;
+        margin-right: 20px;
+        background-image: url('https://placehold.co/120x120');
+        background-size: cover;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .app-info h1 {
+        font-size: 26px;
+        margin-bottom: 6px;
+      }
+
+      body.dark .app-info h1 {
+        color: #ffffff;
+      }
+
+      body.light .app-info h1 {
+        color: #000000;
+      }
+
+      .app-info p {
+        font-size: 14px;
+      }
+
+      body.dark .app-info p {
+        color: #d0d0d0;
+      }
+
+      body.light .app-info p {
+        color: #666666;
+      }
+
+      .install-section {
+        padding: 10px;
+      }
+
+      .install-button {
+        display: inline-block;
+        background: #007bff;
+        color: #ffffff;
+        border: none;
+        padding: 12px 36px;
+        font-size: 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s ease;
+        font-weight: 500;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .install-button:hover {
+        background: #0056b3;
+        transform: scale(1.05);
+      }
+
+      .details {
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(15px);
+      }
+
+      body.dark .details {
+        background: rgba(20, 40, 40, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      body.light .details {
+        background: rgba(245, 245, 245, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .details h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      body.dark .details h2 {
+        color: #ffffff;
+      }
+
+      body.light .details h2 {
+        color: #000000;
+      }
+
+      .details p {
+        font-size: 14px;
+      }
+
+      body.dark .details p {
+        color: #d0d0d0;
+      }
+
+      body.light .details p {
+        color: #666666;
+      }
+
+      .description {
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(15px);
+      }
+
+      body.dark .description {
+        background: rgba(20, 40, 40, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      body.light .description {
+        background: rgba(245, 245, 245, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .description h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      body.dark .description h2 {
+        color: #ffffff;
+      }
+
+      body.light .description h2 {
+        color: #000000;
+      }
+
+      .description p {
+        font-size: 14px;
+      }
+
+      body.dark .description p {
+        color: #d0d0d0;
+      }
+
+      body.light .description p {
+        color: #666666;
+      }
+
+      /* Estilos do modal */
+      .modal {
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .modal.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal-content {
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        width: 300px;
+        position: relative;
+        animation: fadeIn 0.5s ease;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      body.dark .modal-content {
+        background: rgba(20, 40, 40, 0.7);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #e0e0e0;
+      }
+
+      body.light .modal-content {
+        background: rgba(245, 245, 245, 0.7);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: #000000;
+      }
+
+      .modal p {
+        font-size: 14px;
+      }
+
+      body.dark .modal p {
+        color: #d0d0d0;
+      }
+
+      body.light .modal p {
+        color: #666666;
+      }
+
+      .modal button {
+        display: block;
+        margin: 10px auto;
+        padding: 12px;
+        font-size: 16px;
+        border: 1px solid #808080; /* Borda mais fina e cinza */
+        background: transparent;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        transition: background 0.3s, transform 0.2s ease;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      body.dark .modal button {
+        color: #ffffff;
+      }
+
+      body.light .modal button {
+        color: #000000;
+      }
+
+      .modal button:hover {
+        background: #007bff;
+        transform: scale(1.02);
+        color: #ffffff; /* Garante texto branco no hover em ambos os temas */
+        border-color: transparent;
+      }
+
+      .close-button {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      body.dark .close-button {
+        color: #ffffff;
+      }
+
+      body.light .close-button {
+        color: #000000;
+      }
+
+      .close-button:hover {
+        color: #007bff;
+      }
+
+      .footer {
+        padding: 0px;
+        border-radius: 12px 12px 0 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(15px);
+        width: 100%;
+        position: relative;
+        z-index: 2;
+      }
+
+      body.dark .footer {
+        background: rgba(20, 40, 40, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: none;
+      }
+
+      body.light .footer {
+        background: rgba(245, 245, 245, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: none;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer p {
+        font-size: 14px;
+      }
+
+      body.dark .footer p {
+        color: #d0d0d0;
+      }
+
+      body.light .footer p {
+        color: #666666;
+      }
+
+      .footer-links a {
+        margin-left: 20px;
+        font-size: 14px;
+        color: inherit;
+        transition: color 0.3s;
+      }
+
+      body.dark .footer-links a {
+        color: #d0d0d0;
+      }
+
+      body.light .footer-links a {
+        color: #666666;
+      }
+
+      .footer-links a:hover {
+        color: #007bff;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (max-width: 768px) {
+        .banner {
+          height: 160px;
+        }
+
+        .header {
+          flex-direction: column;
+          text-align: center;
+          padding: 15px;
+        }
+
+        .app-left {
+          flex-direction: column;
+          margin-bottom: 10px;
+        }
+
+        .app-icon {
+          margin: 0 0 10px 0;
+        }
+
+        .install-button {
+          width: 100%;
+          padding: 12px 0;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-links {
+          margin-top: 10px;
+        }
+
+        .footer-links a {
+          margin: 0 10px;
+        }
+      }

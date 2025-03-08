@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>N X T Y L V L</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         * {
@@ -20,35 +20,44 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: url('bg.jpg') no-repeat center center/cover;
-            background-color: #121212;
-            color: white;
+            background: url('https://raw.githubusercontent.com/2nxty/nx/refs/heads/main/docs/img/stock-teal.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+            position: relative;
+            transition: color 0.3s;
         }
 
         .overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
         }
 
         .container {
             position: relative;
             text-align: center;
             padding: 50px;
-            background: rgba(30, 30, 30, 0.5);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(20, 40, 40, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             animation: fadeIn 1s ease-in-out;
+            z-index: 2;
+        }
+
+        body.light .container {
+            background: rgba(245, 245, 245, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #000000;
         }
 
         h1 {
-            font-size: 48px;
-            font-weight: 600;
+            font-size: 24px;
             margin-bottom: 20px;
         }
 
@@ -65,43 +74,50 @@
         i.normal {
             position: relative;
             font-size: 20px;
-            top: 0px;
+            top: 1px;
         }
 
         .btn {
+            width: 100%;
             display: inline-block;
-            padding: 12px 24px;
+            padding: 12px 36px;
             font-size: 18px;
-            font-weight: 600;
-            color: black;
-            background: white;
+            font-weight: 500;
+            color: #ffffff;
+            background: #007bff;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: background 0.3s, transform 0.2s ease;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .btn:hover {
-            background: #cccccc;
+            background: #0056b3;
+            transform: scale(1.05);
         }
 
         .footer {
-            padding: 20px;
+            padding: 20px; /* Altura reduzida */
             border-radius: 12px 12px 0 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(12px);
-            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
             width: 100%;
             position: fixed;
             bottom: 0;
+            z-index: 2;
         }
 
         body.dark .footer {
-            background-color: rgba(40, 40, 40, 0.5);
+            background: rgba(20, 40, 40, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: none;
         }
 
         body.light .footer {
-            background-color: rgba(245, 245, 245, 0.5);
+            background: rgba(245, 245, 245, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: none;
         }
 
         .footer-content {
@@ -140,7 +156,56 @@
         }
 
         .footer-links a:hover {
-            color: #007bff;
+            
+        }
+
+        /* Input estilizado */
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            outline: none;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+            transition: background 0.3s;
+        }
+
+        body.light input {
+            background: rgba(0, 0, 0, 0.1);
+            color: #000000;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        body.light input::placeholder {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        body.light input:focus {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Resultado */
+        #resultado {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #ddd;
+            min-height: 20px;
+        }
+
+        body.light #resultado {
+            color: #333;
         }
 
         @keyframes fadeIn {
@@ -149,26 +214,30 @@
         }
 
         @media (max-width: 768px) {
-        .footer-content {
-          flex-direction: column;
-          text-align: center;
-        }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
 
-        .footer-links {
-          margin-top: 10px;
-        }
+            .footer-links {
+                margin-top: 10px;
+            }
 
-        .footer-links a {
-          margin: 0 10px;
+            .footer-links a {
+                margin: 0 10px;
+            }
+
+            .container {
+                padding: 30px;
+            }
         }
-      }
     </style>
 </head>
 <body class="dark">
     <div class="overlay"></div>
     <div class="container">
-        <h1>NXTYLVL</h1>
-        <a href="https://nxty.cc/lvl" class="btn">JOIN <i class="bi bi-arrow-right normal"></i></a>
+        <h1>Welcome to <span>NXTYLVL</span></h1>
+        <a href="search.html" class="btn">SEARCH GAMES <i class="bi bi-arrow-right normal"></i></a>
     </div>
     <footer class="footer">
         <div class="footer-content">
